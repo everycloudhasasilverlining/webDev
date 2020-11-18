@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "/Users/dongheelee/Documents/frontEnd/Bootstrap 2020 Starter Files"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Bootstrap4_1",
+		"liveServer.settings.port": 5501
+	}
+}
