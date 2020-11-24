@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Weight Converter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+            body {
+                margin-top : 70px;
+                background: #333;
+                color : #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h1 class="display-4 text-center">Weight Converter</h1>
+                    <form action="">
+                        <div class="form-group">
+                            <input id='lbsInput' type="number" class='form-control form-control-lg' placeholder="Enter Pounds..">
+                        </div>
+                    </form>
+                    <div id="output">
+                        
+                        <div class="card text-white bg-primary mb-3">
+                            <div class="card-header">Grams</div>
+                            <div class="card-body">
+                              <h5 class="card-title" id='grOutput'></h5>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-success mb-3">
+                            <div class="card-header">Kilograms</div>
+                            <div class="card-body">
+                              <h5 class="card-title" id='kgOutput'></h5>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-danger mb-3">
+                            <div class="card-header">Onunces</div>
+                            <div class="card-body">
+                              <h5 class="card-title" id='ozOutput'></h5>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/main.js" async defer></script>
+    </body>
+</html>
