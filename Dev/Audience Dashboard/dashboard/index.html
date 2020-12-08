@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Audience Dashboard</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.chart/latest/tui-chart.min.css">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Audience Dashboard</a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Sign out</a>
+        </li>
+      </ul>
+  </nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <span data-feather="home"></span>
+              Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file"></span>
+              Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              Customers
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2"></span>
+              Reports
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers"></span>
+              Integrations
+            </a>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Saved reports</span>
+          <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Current month
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Last quarter
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Social engagement
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Year-end sale
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      
+      <h1 class="h2 border-bottom pb-2">Summary</h1>
+
+      <!-- Summary Cards  -->
+      <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        
+        <div class="card text-white bg-primary mb-3">
+          <div class="card-header">성별</div>
+          <div class="card-body">
+            <div class='d-flex'>
+              <i class="fas fa-female fa-5x"></i>
+              <div class='d-flex flex-column'>
+                <h5 class='ml-5'> 여성 회원의 비중이 높아요!</h5>
+                <h5 class='ml-5 '> 55.5% </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card text-white bg-success mb-3">
+          <div class="card-header">연령대</div>
+          <div class="card-body text-white">
+            <div class='d-flex'>
+              <i class="fas fa-stopwatch-20 fa-5x"></i>
+              <div class='d-flex flex-column'>
+                <h5 class='ml-5'> 20대의 비중이 높아요!</h5>
+                <h5 class='ml-5 '> 55.5% </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card text-white bg-warning mb-3">
+          <div class="card-header">LifeStage</div>
+          <div class="card-body text-white">
+            <div class='d-flex'>
+              <i class="fas fa-baby-carriage fa-5x"></i>
+              <div class='d-flex flex-column'>
+                <h5 class='ml-5'> 영유아 자녀가 있어요! </h5>
+                <h5 class='ml-5 '> 55.5% </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card text-white bg-info mb-3">
+          <div class="card-header">관심사</div>
+          <div class="card-body text-white">
+            <div class='d-flex'>
+              <i class="fas fa-plane-departure fa-5x"></i>
+              <div class='d-flex flex-column'>
+                <h5 class='ml-5'> 여행에 관심이 많아요!</h5>
+                <h5 class='ml-5 '> 55.5% </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Segments</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+          </button>
+        </div>
+      </div>
+
+      <!-- Chart -->
+     <div class="d-flex justify-content-center align-items-center">
+      <div id="chart-area" class="my-4" ></div>
+     </div> 
+
+     <!-- Seg Summary  -->
+     <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        
+      <div class="card border-secondary mb-3 segSummary">
+        <div class="card-header">Segment1</div>
+        <div class="card-body text-secondary">
+
+          <div class='d-flex my-3 justify-content-between'>
+            <i class="fas fa-female fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 여성 회원의 비중이 높아요!</h5>
+              <h5 class='ml-5 descTxt'> 35.5% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex my-3 justify-content-between'>
+            <i class="fas fa-stopwatch-20 fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 20대의 비중이 높아요!</h5>
+              <h5 class='ml-5 descTxt'> 76.5% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex  my-3 justify-content-between'>
+            <i class="fas fa-baby-carriage fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 영유아 자녀가 있어요!</h5>
+              <h5 class='ml-5 descTxt'> 72.3% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex  my-3 justify-content-between'>
+            <i class="fas fa-plane-departure fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 여행에 관심이 많아요!</h5>
+              <h5 class='ml-5 descTxt'> 63.4% </h5>
+            </div>
+          </div>
+
+        </div>
+        <button type="button" class="btn btn-secondary">See Detail</button>
+      </div>
+
+
+      <div class="card border-secondary mb-3 segSummary">
+        <div class="card-header">Segment2</div>
+        <div class="card-body text-secondary">
+
+          <div class='d-flex my-3 justify-content-between'>
+            <i class="fas fa-female fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 여성 회원의 비중이 높아요!</h5>
+              <h5 class='ml-5 descTxt'> 35.5% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex my-3 justify-content-between'>
+            <i class="fas fa-stopwatch-20 fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 20대의 비중이 높아요!</h5>
+              <h5 class='ml-5 descTxt'> 76.5% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex  my-3 justify-content-between'>
+            <i class="fas fa-baby-carriage fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 영유아 자녀가 있어요!</h5>
+              <h5 class='ml-5 descTxt'> 72.3% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex  my-3 justify-content-between'>
+            <i class="fas fa-plane-departure fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 여행에 관심이 많아요!</h5>
+              <h5 class='ml-5 descTxt'> 63.4% </h5>
+            </div>
+          </div>
+
+        </div>
+        <button type="button" class="btn btn-secondary">See Detail</button>
+      </div>
+
+
+      <div class="card border-primary mb-3 segSummary">
+        <div class="card-header">Segment3</div>
+        <div class="card-body text-primary">
+
+          <div class='d-flex my-3 justify-content-between'>
+            <i class="fas fa-female fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 여성 회원의 비중이 높아요!</h5>
+              <h5 class='ml-5 descTxt'> 35.5% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex my-3 justify-content-between'>
+            <i class="fas fa-stopwatch-20 fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 20대의 비중이 높아요!</h5>
+              <h5 class='ml-5 descTxt'> 76.5% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex  my-3 justify-content-between'>
+            <i class="fas fa-baby-carriage fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 영유아 자녀가 있어요!</h5>
+              <h5 class='ml-5 descTxt'> 72.3% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex  my-3 justify-content-between'>
+            <i class="fas fa-plane-departure fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 여행에 관심이 많아요!</h5>
+              <h5 class='ml-5 descTxt'> 63.4% </h5>
+            </div>
+          </div>
+
+        </div>
+        <button type="button" class="btn btn-primary">See Detail</button>
+      </div>
+
+
+      <div class="card border-secondary mb-3 segSummary">
+        <div class="card-header">Segment4</div>
+        <div class="card-body text-secondary">
+
+          <div class='d-flex my-3 justify-content-between'>
+            <i class="fas fa-female fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 여성 회원의 비중이 높아요!</h5>
+              <h5 class='ml-5 descTxt'> 35.5% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex my-3 justify-content-between'>
+            <i class="fas fa-stopwatch-20 fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 20대의 비중이 높아요!</h5>
+              <h5 class='ml-5 descTxt'> 76.5% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex  my-3 justify-content-between'>
+            <i class="fas fa-baby-carriage fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 영유아 자녀가 있어요!</h5>
+              <h5 class='ml-5 descTxt'> 72.3% </h5>
+            </div>
+          </div>
+
+          <div class='d-flex  my-3 justify-content-between'>
+            <i class="fas fa-plane-departure fa-5x"></i>
+            <div class='d-flex flex-column'>
+              <h5 class='ml-5 descTxt'> 여행에 관심이 많아요!</h5>
+              <h5 class='ml-5 descTxt'> 63.4% </h5>
+            </div>
+          </div>
+
+        </div>
+        <button type="button" class="btn btn-secondary">See Detail</button>
+      </div>
+      
+
+
+
+    </div>
+
+    </main>
+  </div>
+</div>
+        <script src="https://uicdn.toast.com/tui.chart/latest/tui-chart-all.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+        <script src="chart.js"></script></body>
+        <script src="script.js"></script></body>
+</html>
