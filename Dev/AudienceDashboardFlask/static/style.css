@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@200;300;400&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Exo 2', sans-serif;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: flex-start; */
+  /* justify-content: flex-start; */
+  height: 100vh;
+  overflow: scroll;
+  margin: 0;
+  padding-top: 50px;
+  background-color: ivory;
+}
+
+.navbar {
+  height: 50px;
+}
+
+.navbar a {
+  /* font-size: 0.5rem; */
+}
+
+.breadcrumb {
+  height: 30px;
+  font-size: 0.5rem;
+}
+
+.col {
+  border: 1px solid #f4f4f4;
+  margin: 5px;
+  background-color: white;
+}
+
+.colBox {
+  padding: 20px;
+}
+
+.colBoxBox {
+  border-top: 1px dashed #f4f4f4;
+  margin: 3px 1px;
+  /* padding: 1px; */
+  padding-top: 20px;
+}
+
+.colBox2nd {
+  padding: 20px;
+  border: 1px solid #f4f4f4;
+  padding: 5px 15px;
+  margin: 0;
+}
+
+.cardHeader {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.container-profile {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: between; */
+  flex-wrap: wrap;
+}
+
+.box-profile {
+  flex: auto;
+  margin: 3px;
+}

@@ -1,0 +1,110 @@
+{% extends 'base.html' %} {% block breadcrumb %}
+<!-- Breadcrumb -->
+<div class="container-fluid px-0">
+  <ol class="breadcrumb d-flex align-items-center p-0">
+    <li class="breadcrumb-item ml-5">
+      <a href="#">Lists</a>
+    </li>
+    <li class="breadcrumb-item">CreditCardChurn</li>
+  </ol>
+</div>
+{% endblock %} {% block body %}
+<div class="container mt-3">
+  <div class="row d-flex justify-content-between">
+    <div class="col px-0">
+      <header class="h5 mt-4 ml-4">Demographics</header>
+      <div class="colBox d-flex flex-column justify-content-center pt-0">
+        <div class="colBoxBox d-flex justify-content-between mt-3">
+          <div class="content d-flex flex-column align-items-center">
+            <span class="mb-2">They are..</span>
+            <span><i class="fas fa-3x fa-female"></i></span>
+            <span>Female</span>
+            <span class="mt-2">35%</span>
+          </div>
+          <div class="content d-flex flex-column align-items-center">
+            <span class="mb-2">They are..</span>
+            <span><i class="fas fa-3x fa-birthday-cake"></i></span>
+            <span>20s</span>
+            <span class="mt-2">34%</span>
+          </div>
+          <div class="content d-flex flex-column align-items-center">
+            <span class="mb-2">They use..</span>
+            <span><i class="fas fa-3x fa-mobile"></i></span>
+            <span>Iphone</span>
+            <span class="mt-2">57%</span>
+          </div>
+        </div>
+        <div class="colBoxBox d-flex justify-content-between mt-3">
+          <div class="content d-flex flex-column align-items-center">
+            <span class="mb-2">They are..</span>
+            <span><i class="fas fa-3x fa-female"></i></span>
+            <span>Female</span>
+            <span class="mt-2">35%</span>
+          </div>
+          <div class="content d-flex flex-column align-items-center">
+            <span class="mb-2">They are..</span>
+            <span><i class="fas fa-3x fa-birthday-cake"></i></span>
+            <span>20s</span>
+            <span class="mt-2">34%</span>
+          </div>
+          <div class="content d-flex flex-column align-items-center">
+            <span class="mb-2">They use..</span>
+            <span><i class="fas fa-3x fa-mobile"></i></span>
+            <span>Iphone</span>
+            <span class="mt-2">57%</span>
+          </div>
+        </div>
+        <div class="colBoxBox d-flex justify-content-between mt-3">
+          <div class="content d-flex flex-column align-items-center">
+            <span class="mb-2">They are..</span>
+            <span><i class="fas fa-3x fa-female"></i></span>
+            <span>Female</span>
+            <span class="mt-2">35%</span>
+          </div>
+          <div class="content d-flex flex-column align-items-center">
+            <span class="mb-2">They are..</span>
+            <span><i class="fas fa-3x fa-birthday-cake"></i></span>
+            <span>20s</span>
+            <span class="mt-2">34%</span>
+          </div>
+          <div class="content d-flex flex-column align-items-center">
+            <span class="mb-2">They use..</span>
+            <span><i class="fas fa-3x fa-mobile"></i></span>
+            <span>Iphone</span>
+            <span class="mt-2">57%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col d-flex flex-column justify-content-center">
+      <div class="colBox2nd">
+        <header class="h5">CDR</header>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
+        voluptatum unde error ex nobis tenetur voluptatibus. Quae assumenda
+        reprehenderit quas soluta, repellendus suscipit rem ullam maiores
+      </div>
+      <div class="colBox2nd mt-2">
+        <header class="h5">XDR</header>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
+        voluptatum unde error ex nobis tenetur voluptatibus. Quae assumenda
+        reprehenderit quas soluta, repellendus suscipit rem ullam maiores
+      </div>
+      <div class="colBox2nd mt-2">
+        <header class="h5">Topic</header>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
+        voluptatum unde error ex nobis tenetur voluptatibus. Quae assumenda
+        reprehenderit quas soluta, repellendus suscipit rem ullam maiores
+      </div>
+    </div>
+    <div class="col">
+      <header class="mt-4 ml-4 mb-5 h5">Segment</header>
+      <div class="container d-flex flex-column">
+        <canvas id="bubble" width="100" height="100"></canvas>
+        <button class="btn btn-outline-success btn-block mt-4">
+          <a href="{{ url_for('views.pageSegment') }}">See All segments</a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<div class="jumbotron">
+  <p>Welcome To Puppy Rock!</p>
+  <p>Sign in!</p>
+  <p>There are 3 restrictions on ID</p>
+  <ol>
+    <li>It must contain 1 lowercase letter least.</li>
+    <li>It must contain 1 uppercase letter least.</li>
+    <li>It should end with a number.</li>
+  </ol>
+  <form action="{{ url_for('submit') }}">
+    <label for="name">Name</label>
+    <input type="text" name="name" />
+    <input type="submit" value="SUBMIT" />
+  </form>
+</div>
+{% endblock %}
