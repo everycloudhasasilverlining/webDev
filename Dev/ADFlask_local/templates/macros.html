@@ -1,0 +1,64 @@
+{% macro summaryCard(no, data1, data2) %}
+<div class="col" style="min-width: 250px">
+  <div class="cardHeader h6">Group {{ no }}</div>
+  <canvas class="p-3" id="donut_{{ no }}" width="100" height="100"></canvas>
+  <div class="d-flex mb-1 mt-1">
+    <div class="ml-3 mr-auto">Gender</div>
+    <div id="gender_{{ no }}" class="mr-3">Women (43%)</div>
+  </div>
+  <div class="d-flex mb-1">
+    <div class="ml-3 mr-auto">Age</div>
+    <div id="Customer_Age_{{ no }}" class="mr-3">99</div>
+  </div>
+  <div class="d-flex mb-4">
+    <div class="ml-3 mr-auto">MOB</div>
+    <div id="Months_on_book_{{ no }}" class="mr-3">34</div>
+  </div>
+  <div class="d-flex mb-1">
+    <div class="ml-3 mr-auto">Credit Limit</div>
+    <div id="Credit_Limit_{{ no }}" class="mr-3">4000$</div>
+  </div>
+  <div class="d-flex mb-1">
+    <div class="ml-3 mr-auto">Total Trans. Amt</div>
+    <div id="Total_Trans_Amt_{{ no }}" class="mr-3">2000$</div>
+  </div>
+  <div class="d-flex mb-4">
+    <div class="ml-3 mr-auto">Avg Util. Rate</div>
+    <div id="Avg_Utilization_Ratio_{{ no }}" class="mr-3">35%</div>
+  </div>
+  <div class="d-flex mb-1">
+    <div class="ml-3 mr-auto">Total Trans. Cnt</div>
+    <div id="Total_Trans_Ct_{{ no }}" class="mr-3">32</div>
+  </div>
+  <div class="d-flex mb-1">
+    <div class="ml-3 mr-auto"># of Mth inactive</div>
+    <div id="Months_Inactive_12_mon_{{ no }}" class="mr-3">2.3</div>
+  </div>
+  <div class="d-flex mb-1">
+    <div class="ml-3 mr-auto"># of contacts</div>
+    <div id="Contacts_Count_12_mon_{{ no }}" class="mr-3">3.2</div>
+  </div>
+  <button class="btn_{{ no }} btn btn-outline-success btn-block my-4">
+    See Detail
+  </button>
+</div>
+<script>
+  var jsSegment =  {{ data1|tojson }};
+  var jsSegment = JSON.parse(jsSegment);
+  var info = jsSegment[ {{ no }} ]
+
+  var jsGender =  {{ data2|tojson }};
+  var jsGender = JSON.parse(jsGender);
+  var infoGender = jsGender[ {{ no }} ]
+
+  document.querySelector('#gender_{{ no }}').innerHTML = infoGender['gender_mf'] + ' (' + infoGender['gender_ratio'] + '%)'
+  document.querySelector('#Customer_Age_{{ no }}').innerHTML = info['Customer_Age'].toFixed(1)
+  document.querySelector('#Months_on_book_{{ no }}').innerHTML = info['Months_on_book'].toFixed(1)
+  document.querySelector('#Credit_Limit_{{ no }}').innerHTML = info['Credit_Limit'].toFixed(0) + '$'
+  document.querySelector('#Total_Trans_Amt_{{ no }}').innerHTML = info['Total_Trans_Amt'].toFixed(0) + '$'
+  document.querySelector('#Avg_Utilization_Ratio_{{ no }}').innerHTML = info['Avg_Utilization_Ratio'].toFixed(1) + '%'
+  document.querySelector('#Total_Trans_Ct_{{ no }}').innerHTML = info['Total_Trans_Ct'].toFixed(1)
+  document.querySelector('#Months_Inactive_12_mon_{{ no }}').innerHTML = info['Months_Inactive_12_mon'].toFixed(1)
+  document.querySelector('#Contacts_Count_12_mon_{{ no }}').innerHTML = info['Contacts_Count_12_mon'].toFixed(1)
+</script>
+{% endmacro %}
