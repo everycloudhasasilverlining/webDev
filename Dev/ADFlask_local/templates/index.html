@@ -111,23 +111,45 @@
 <script>
 
   // Clustering Chart
+
+  var colorPalette = ['#30618C',
+  '#9CC1D9',
+  '#4B8CA6',
+  '#D9AE5F',
+  '#8C5E35',
+  '#BF4953',
+  '#730217',
+  '#D9CCC7',
+  '#D93A2B',
+  '#D98282'
+  ]
+
+
   var ctx = document.getElementById('bubble');
 
   var clusterValue =  {{ clusterValue|tojson }};
   var clusterValue = JSON.parse(clusterValue)
-  console.log(clusterValue)
+
 
   var popData = {
     datasets: [
+      {% for i in range(8) %}
       {
-        data: clusterValue,
-        backgroundColor: '#FF9966',
+        data: [clusterValue[{{ i }}]],
+        backgroundColor: colorPalette[{{i}}],
+        labels : 'Group ' + {{ i+1 }}
       },
-    ],
+      {% endfor %}
+    ]
   };
   var bubbleChart = new Chart(ctx, {
     type: 'bubble',
     data: popData,
+    options : {
+      legend: {
+         display: false
+      }
+  }
   });
 
   // Marital Chart
@@ -138,6 +160,8 @@
 
   var maritalIndex = JSON.parse(maritalIndex)
   var maritalValue = JSON.parse(maritalValue)
+
+  console.log(maritalValue)
 
   var dataMarital = {
     labels: maritalIndex,
@@ -152,6 +176,11 @@
   var chartMarital = new Chart(ctxMarital, {
     type: 'bar',
     data: dataMarital,
+    options : {
+      legend: {
+         display: false
+      }
+  }
   });
 
 
@@ -171,12 +200,21 @@
       {
         label: '%',
         data: incomeValue,
-      },
-    ],
-  };
+        options : {
+          legend: {
+             display: false
+          }
+      }
+  }]}
+
   var chartIncome = new Chart(ctxIncome, {
     type: 'bar',
     data: dataIncome,
+    options : {
+      legend: {
+         display: false
+      }
+  }
   });
 
 
@@ -202,6 +240,11 @@
   var chartCard = new Chart(ctxCard, {
     type: 'bar',
     data: dataCard,
+    options : {
+      legend: {
+         display: false
+      }
+  }
   });
 </script>
 {% endblock %}

@@ -39,7 +39,7 @@
     <div id="Contacts_Count_12_mon_{{ no }}" class="mr-3">3.2</div>
   </div>
   <button class="btn_{{ no }} btn btn-outline-success btn-block my-4">
-    See Detail
+    <a href="{{ url_for('views.pageDetails', seg=no) }}">See Detail</a>
   </button>
 </div>
 <script>

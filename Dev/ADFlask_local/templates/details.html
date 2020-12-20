@@ -1,0 +1,258 @@
+{% extends 'base.html' %} {% block breadcrumb %}
+<!-- Breadcrumb -->
+<div class="container-fluid px-0">
+  <ol class="breadcrumb d-flex align-items-center p-0">
+    <li class="breadcrumb-item ml-5">
+      <a href="#">Lists</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="{{ url_for('views.pageMain') }}">CreditCardChurn</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="{{ url_for('views.pageSegment') }}">Audience Breakdown</a>
+    </li>
+    <li class="breadcrumb-item">Segment Detail</li>
+  </ol>
+</div>
+{% endblock %} {% block body %}
+<div class="container mt-5 d-flex justify-content-between">
+  <div class="row">
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6">Gender</div>
+      <p class="text-secondary">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas id="detailGender" class="mb-3" width="100" height="100"></canvas>
+    </div>
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6">Age</div>
+      <p class="text-secondary">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas id="detailAge" class="mb-3" width="100" height="100"></canvas>
+    </div>
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6">Month On Book</div>
+      <p class="text-secondary">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas id="detailMob" class="mb-3" width="100" height="100"></canvas>
+    </div>
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6">Marital Status</div>
+      <p class="text-secondary">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas id="detailMarital" class="mb-3" width="100" height="100"></canvas>
+    </div>
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6">Income</div>
+      <p class="text-secondary">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas id="detailIncome" class="mb-3" width="100" height="100"></canvas>
+    </div>
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6">Card Product</div>
+      <p class="text-secondary">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas id="detailCard" class="mb-3" width="100" height="100"></canvas>
+    </div>
+  </div>
+</div>
+
+<script>
+  var colorPalette = ['#30618C',
+    '#9CC1D9',
+    '#4B8CA6',
+    '#D9AE5F',
+    '#8C5E35',
+    '#BF4953',
+    '#730217',
+    '#D9CCC7',
+    '#D93A2B',
+    '#D98282'
+    ]
+
+  // Gender
+  var ctxGender = document.getElementById('detailGender');
+
+  var lstGender =  {{ lstGender|tojson }};
+  var lstGender = JSON.parse(lstGender);
+
+  var dataGender = {
+    labels: ['Male', 'Female'],
+    datasets: [
+      {
+        label: 'Group',
+        data: lstGender[1],
+        backgroundColor: colorPalette[5],
+      },
+      {
+        label: 'All',
+        data: lstGender[0],
+        backgroundColor: colorPalette[1],
+
+      },
+    ],
+  };
+
+  var chartGender = new Chart(ctxGender, {
+    type: 'horizontalBar',
+    data: dataGender,
+  });
+
+  // Age
+  var ctxAge = document.getElementById('detailAge');
+
+  var lstAge =  {{ lstAge|tojson }};
+  var lstAge = JSON.parse(lstAge);
+
+  var dataAge = {
+    labels: lstAge[0],
+    datasets: [
+      {
+        label: 'Group',
+        data: lstAge[1],
+        backgroundColor: colorPalette[5],
+      },
+      {
+        label: 'All',
+        data: lstAge[2],
+        backgroundColor: colorPalette[1],
+
+      },
+    ],
+  };
+
+  var chartAge = new Chart(ctxAge, {
+    type: 'horizontalBar',
+    data: dataAge,
+  });
+
+    // Age
+    var ctxMob = document.getElementById('detailMob');
+
+    var lstMob =  {{ lstMob|tojson }};
+    var lstMob = JSON.parse(lstMob);
+
+    var dataMob = {
+      labels: lstMob[0],
+      datasets: [
+        {
+          label: 'Group',
+          data: lstMob[1],
+          backgroundColor: colorPalette[5],
+        },
+        {
+          label: 'All',
+          data: lstMob[2],
+          backgroundColor: colorPalette[1],
+
+        },
+      ],
+    };
+
+    var chartMob = new Chart(ctxMob, {
+      type: 'horizontalBar',
+      data: dataMob,
+    });
+
+    // Marital
+    var ctxMarital = document.getElementById('detailMarital');
+
+    var lstMarital =  {{ lstMarital|tojson }};
+    var lstMarital = JSON.parse(lstMarital);
+
+    var dataMarital = {
+      labels: lstMarital[0],
+      datasets: [
+        {
+          label: 'Group',
+          data: lstMarital[1],
+          backgroundColor: colorPalette[5],
+        },
+        {
+          label: 'All',
+          data: lstMarital[2],
+          backgroundColor: colorPalette[1],
+
+        },
+      ],
+    };
+
+    var chartMarital = new Chart(ctxMarital, {
+      type: 'horizontalBar',
+      data: dataMarital,
+    });
+
+    // Income
+    var ctxIncome = document.getElementById('detailIncome');
+
+    var lstIncome =  {{ lstIncome|tojson }};
+    var lstIncome = JSON.parse(lstIncome);
+
+    var dataIncome = {
+      labels: lstIncome[0],
+      datasets: [
+        {
+          label: 'Group',
+          data: lstIncome[1],
+          backgroundColor: colorPalette[5],
+        },
+        {
+          label: 'All',
+          data: lstIncome[2],
+          backgroundColor: colorPalette[1],
+
+        },
+      ],
+    };
+
+    var chartIncome = new Chart(ctxIncome, {
+      type: 'horizontalBar',
+      data: dataIncome,
+    });
+
+    // Card
+    var ctxCard = document.getElementById('detailCard');
+
+    var lstCard =  {{ lstCard|tojson }};
+    var lstCard = JSON.parse(lstCard);
+
+    var dataCard = {
+      labels: lstCard[0],
+      datasets: [
+        {
+          label: 'Group',
+          data: lstCard[1],
+          backgroundColor: colorPalette[5],
+        },
+        {
+          label: 'All',
+          data: lstCard[2],
+          backgroundColor: colorPalette[1],
+
+        },
+      ],
+    };
+
+    var chartCard = new Chart(ctxCard, {
+      type: 'horizontalBar',
+      data: dataCard,
+    });
+</script>
+{% endblock %}

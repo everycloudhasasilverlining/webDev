@@ -29,24 +29,43 @@ breadcrumb %}
 
 <script>
   // Clustering Chart
+
+  var colorPalette = ['#30618C',
+  '#9CC1D9',
+  '#4B8CA6',
+  '#D9AE5F',
+  '#8C5E35',
+  '#BF4953',
+  '#730217',
+  '#D9CCC7',
+  '#D93A2B',
+  '#D98282'
+  ]
+
   var ctx = document.getElementById('bubble');
 
   var clusterValue =  {{ clusterValue|tojson }};
-  var clusterValue = JSON.parse(clusterValue)
+  var clusterValue = JSON.parse(clusterValue);
 
   var popData = {
     datasets: [
+      {% for i in range(8) %}
       {
-        data: clusterValue,
-        backgroundColor: '#FF9966',
+        data: [clusterValue[{{ i }}]],
+        backgroundColor: colorPalette[{{i}}],
+        labels : 'Group ' + {{ i+1 }}
       },
-    ],
-    labels : [1,2,3,4,5,6,7,8]
+      {% endfor %}
+    ]
   };
   var bubbleChart = new Chart(ctx, {
     type: 'bubble',
     data: popData,
-  });
+    options : {
+      legend: {
+         display: false
+      }
+  }});
 
   var jsPortion =  {{ dictPortion|tojson }};
 
@@ -65,6 +84,11 @@ breadcrumb %}
   var DoughnutChart{{ i }} = new Chart(ctx_donut{{ i }}, {
     type: 'doughnut',
     data: data_donut,
+    options : {
+      legend: {
+         display: false
+      }
+  }
   });
   {% endfor %}
 </script>

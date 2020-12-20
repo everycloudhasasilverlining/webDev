@@ -178,3 +178,57 @@ def pageSegment():
                            dictGender=dictGender,
                            dictPortion=dictPortion
                            )
+
+
+@views.route('/segment/<int:seg>')
+def pageDetails(seg):
+
+    seg = seg+1
+
+    def getChart(colname, i, ascending=True):
+        t = pd.DataFrame(dfOrigin.groupby(colname).size(), columns=['c'])
+        t = t.apply(lambda x: x/np.array(t).sum(), axis=0)
+        t2 = pd.DataFrame(dfOrigin[dfOrigin.grp == i].groupby(
+            colname).size(), columns=['c'])
+        t2 = t2.apply(lambda x: x/np.array(t2).sum(), axis=0)
+        t3 = pd.merge(t, t2, left_index=True, right_index=True,
+                      how='left').fillna(0.0).sort_index(ascending=ascending)
+
+        idx = list(t3.index)
+        a = ['{:.1f}'.format(c*100) for c in t3.iloc[:, 0]]
+        g = ['{:.1f}'.format(c*100) for c in t3.iloc[:, 1]]
+        return idx, a, g
+    # Gender
+    _, a, g = getChart('Gender', seg, False)
+    lstGender = json.dumps([a, g])
+
+    # Age
+    dfOrigin['Customer_Age_g'] = dfOrigin.Customer_Age//10*10
+    idx, a, g = getChart('Customer_Age_g', seg, True)
+    lstAge = json.dumps([idx, a, g])
+
+    # Age
+    dfOrigin['Months_on_book_g'] = dfOrigin.Customer_Age//6*6
+    idx, a, g = getChart('Months_on_book_g', seg, True)
+    lstMob = json.dumps([idx, a, g])
+
+    # Marital
+    idx, a, g = getChart('Marital_Status', seg, True)
+    lstMarital = json.dumps([idx, a, g])
+
+    # Income
+    idx, a, g = getChart('Income_Category', seg, True)
+    lstIncome = json.dumps([idx, a, g])
+
+    # card
+    idx, a, g = getChart('Card_Category', seg, True)
+    lstCard = json.dumps([idx, a, g])
+
+    return render_template('details.html',
+                           lstGender=lstGender,
+                           lstAge=lstAge,
+                           lstMob=lstMob,
+                           lstMarital=lstMarital,
+                           lstIncome=lstIncome,
+                           lstCard=lstCard,
+                           )
