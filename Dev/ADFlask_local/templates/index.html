@@ -8,7 +8,13 @@
     <li class="breadcrumb-item">CreditCardChurn</li>
   </ol>
 </div>
+<!-- Titles -->
+
 {% endblock %} {% block body %}
+<header class="container">
+  <p class="mb-0">Credit Card Churn Analysis</p>
+  <h4 class="font-weight-bold">Full Audience</h4>
+</header>
 <div class="container mt-3">
   <div class="row d-flex justify-content-between">
     <div class="col px-0">
@@ -169,6 +175,7 @@
       {
         label: '%',
         data: maritalValue,
+        backgroundColor : colorPalette[5]
       },
     ],
   };
@@ -200,11 +207,8 @@
       {
         label: '%',
         data: incomeValue,
-        options : {
-          legend: {
-             display: false
-          }
-      }
+        backgroundColor : colorPalette[3]
+
   }]}
 
   var chartIncome = new Chart(ctxIncome, {
@@ -234,6 +238,7 @@
       {
         label: '%',
         data: cardValue,
+        backgroundColor : colorPalette[2]
       },
     ],
   };

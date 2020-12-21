@@ -231,4 +231,5 @@ def pageDetails(seg):
                            lstMarital=lstMarital,
                            lstIncome=lstIncome,
                            lstCard=lstCard,
+                           seg=seg
                            )
