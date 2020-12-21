@@ -183,12 +183,12 @@ def pageSegment():
 @views.route('/segment/<int:seg>')
 def pageDetails(seg):
 
-    seg = seg+1
+    seg = seg-1
 
     def getChart(colname, i, ascending=True):
         t = pd.DataFrame(dfOrigin.groupby(colname).size(), columns=['c'])
         t = t.apply(lambda x: x/np.array(t).sum(), axis=0)
-        t2 = pd.DataFrame(dfOrigin[dfOrigin.grp == i].groupby(
+        t2 = pd.DataFrame(dfOrigin[dfOrigin.grp == seg].groupby(
             colname).size(), columns=['c'])
         t2 = t2.apply(lambda x: x/np.array(t2).sum(), axis=0)
         t3 = pd.merge(t, t2, left_index=True, right_index=True,
