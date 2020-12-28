@@ -1,3 +1,4 @@
+from __future__ import division
 from flask import Flask, render_template, url_for, request, redirect, Blueprint
 
 import pandas as pd
@@ -180,8 +181,8 @@ def pageSegment():
                            )
 
 
-@views.route('/segment/<int:seg>')
-def pageDetails(seg):
+@views.route('/segment/demo/<int:seg>')
+def pageDetailsDemo(seg):
 
     seg = seg-1
 
@@ -224,12 +225,76 @@ def pageDetails(seg):
     idx, a, g = getChart('Card_Category', seg, True)
     lstCard = json.dumps([idx, a, g])
 
-    return render_template('details.html',
+    return render_template('detailsDemo.html',
                            lstGender=lstGender,
                            lstAge=lstAge,
                            lstMob=lstMob,
                            lstMarital=lstMarital,
                            lstIncome=lstIncome,
                            lstCard=lstCard,
+                           seg=seg
+                           )
+
+
+@views.route('/segment/usage/<int:seg>')
+def pageDetailsUsage(seg):
+
+    seg = seg-1
+
+    def getChartHist(colname):
+        t = np.histogram(dfOrigin[colname])
+        t2 = np.histogram(dfOrigin[dfOrigin.grp == seg][colname], bins=t[1])
+
+        tSum = np.array(t[0]).sum()
+        t2Sum = np.array(t2[0]).sum()
+
+        if colname == 'Avg_Utilization_Ratio':
+            bins = ['{:.1f}'.format(c*100) for c in t[1]]
+            bins = [0] + bins
+        elif colname == 'Months_Inactive_12_mon' or colname == 'Contacts_Count_12_mon':
+            bins = ['{:.1f}'.format(c) for c in t[1]]
+        else:
+            bins = ['{:.0f}'.format(c) for c in t[1]]
+            bins = [0] + bins
+
+        # a = [c/tSum*100 for c in t[0]]
+        # g = [c/t2Sum*100 for c in t2[0]]
+
+        a = [c/tSum*100 for c in t[0]]
+        g = [c/t2Sum*100 for c in t2[0]]
+
+        return bins, a, g
+
+    # Card Limit
+    bins, a, g = getChartHist('Credit_Limit')
+    lstCardLimit = json.dumps([bins, a, g])
+
+    # Total_Trans_Amt
+    bins, a, g = getChartHist('Total_Trans_Amt')
+    lstTotalTransAmt = json.dumps([bins, a, g])
+
+    # util ratio
+    bins, a, g = getChartHist('Avg_Utilization_Ratio')
+    lstUtilRatio = json.dumps([bins, a, g])
+
+    # No Of Trans
+    bins, a, g = getChartHist('Total_Trans_Ct')
+    lstNoOfTrans = json.dumps([bins, a, g])
+
+    # Inactive Months
+    bins, a, g = getChartHist('Months_Inactive_12_mon')
+    lstInactiveMonths = json.dumps([bins, a, g])
+
+    # Contacts_Count_12_mon
+    bins, a, g = getChartHist('Contacts_Count_12_mon')
+    lstContactCnt = json.dumps([bins, a, g])
+
+    return render_template('detailsUsage.html',
+                           lstCardLimit=lstCardLimit,
+                           lstTotalTransAmt=lstTotalTransAmt,
+                           lstUtilRatio=lstUtilRatio,
+                           lstNoOfTrans=lstNoOfTrans,
+                           lstInactiveMonths=lstInactiveMonths,
+                           lstContactCnt=lstContactCnt,
                            seg=seg
                            )

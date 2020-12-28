@@ -16,8 +16,8 @@
   <h4 class="font-weight-bold">Full Audience</h4>
 </header>
 <div class="container mt-3">
-  <div class="row d-flex justify-content-between">
-    <div id="boxformatting" class="col px-0">
+  <div class="row d-flex justify-content-space">
+    <div class="col px-0">
       <header class="h5 mt-4 ml-4">Demographics</header>
       <div class="colBox d-flex flex-column justify-content-center pt-0">
         <div class="colBoxBox d-flex justify-content-between mt-3">
@@ -88,7 +88,10 @@
         </div>
       </div>
     </div>
-    <div class="col d-flex flex-column justify-content-center py-3">
+    <div
+      id="indexBox"
+      class="col d-flex flex-column justify-content-center py-3"
+    >
       <div>
         <header class="h5">Marital</header>
         <canvas id="marital" width="100" height="50"></canvas>
@@ -115,141 +118,146 @@
 </div>
 <!-- <script src="{{url_for('static', filename='graph.js')}}"></script> -->
 <script>
+  Chart.defaults.global.defaultFontFamily = 'Lato';
+  Chart.defaults.global.defaultFontSize = 12;
 
-  // Clustering Chart
+    // Clustering Chart
 
-  var colorPalette = ['#30618C',
-  '#9CC1D9',
-  '#4B8CA6',
-  '#D9AE5F',
-  '#8C5E35',
-  '#BF4953',
-  '#730217',
-  '#D9CCC7',
-  '#D93A2B',
-  '#D98282'
-  ]
-
-
-  var ctx = document.getElementById('bubble');
-
-  var clusterValue =  {{ clusterValue|tojson }};
-  var clusterValue = JSON.parse(clusterValue)
-
-
-  var popData = {
-    datasets: [
-      {% for i in range(8) %}
-      {
-        data: [clusterValue[{{ i }}]],
-        backgroundColor: colorPalette[{{i}}],
-        labels : 'Group ' + {{ i+1 }}
-      },
-      {% endfor %}
+    var colorPalette = ['#30618C',
+    '#9CC1D9',
+    '#4B8CA6',
+    '#D9AE5F',
+    '#8C5E35',
+    '#BF4953',
+    '#730217',
+    '#D9CCC7',
+    '#D93A2B',
+    '#D98282'
     ]
-  };
-  var bubbleChart = new Chart(ctx, {
-    type: 'bubble',
-    data: popData,
-    options : {
-      legend: {
-         display: false
-      }
-  }
-  });
-
-  // Marital Chart
-  var ctxMarital = document.getElementById('marital');
-
-  var maritalIndex =  {{ lstLabelsMarital|tojson }};
-  var maritalValue =  {{ lstValueMarital|tojson }};
-
-  var maritalIndex = JSON.parse(maritalIndex)
-  var maritalValue = JSON.parse(maritalValue)
-
-  console.log(maritalValue)
-
-  var dataMarital = {
-    labels: maritalIndex,
-    datasets: [
-      {
-        label: '%',
-        data: maritalValue,
-        backgroundColor : colorPalette[5]
-      },
-    ],
-  };
-
-  var chartMarital = new Chart(ctxMarital, {
-    type: 'bar',
-    data: dataMarital,
-    options : {
-      legend: {
-         display: false
-      }
-  }
-  });
 
 
-  // Income Chart
-  var ctxIncome = document.getElementById('income');
+    var ctx = document.getElementById('bubble');
 
-  var incomeIndex =  {{ lstLabelsIncome|tojson }};
-  var incomeValue =  {{ lstValueIncome|tojson }};
-
-  var incomeIndex = JSON.parse(incomeIndex)
-  var incomeValue = JSON.parse(incomeValue)
+    var clusterValue =  {{ clusterValue|tojson }};
+    var clusterValue = JSON.parse(clusterValue)
 
 
-  var dataIncome = {
-    labels: incomeIndex,
-    datasets: [
-      {
-        label: '%',
-        data: incomeValue,
-        backgroundColor : colorPalette[3]
+    var popData = {
+      datasets: [
+        {% for i in range(8) %}
+        {
+          data: [clusterValue[{{ i }}]],
+          backgroundColor: colorPalette[{{i}}],
+          labels : 'Group ' + {{ i+1 }}
+        },
+        {% endfor %}
+      ]
+    };
+    var bubbleChart = new Chart(ctx, {
+      type: 'bubble',
+      data: popData,
+      options : {
+        legend: {
+           display: false
+        },
+        tooltips : {
+          enabled : false,
+        }
+    }
+    });
 
-  }]}
+    // Marital Chart
+    var ctxMarital = document.getElementById('marital');
 
-  var chartIncome = new Chart(ctxIncome, {
-    type: 'bar',
-    data: dataIncome,
-    options : {
-      legend: {
-         display: false
-      }
-  }
-  });
+    var maritalIndex =  {{ lstLabelsMarital|tojson }};
+    var maritalValue =  {{ lstValueMarital|tojson }};
+
+    var maritalIndex = JSON.parse(maritalIndex)
+    var maritalValue = JSON.parse(maritalValue)
+
+    console.log(maritalValue)
+
+    var dataMarital = {
+      labels: maritalIndex,
+      datasets: [
+        {
+          label: '%',
+          data: maritalValue,
+          backgroundColor : colorPalette[5]
+        },
+      ],
+    };
+
+    var chartMarital = new Chart(ctxMarital, {
+      type: 'bar',
+      data: dataMarital,
+      options : {
+        legend: {
+           display: false
+        }
+    }
+    });
 
 
-  // Card Chart
-  var ctxCard = document.getElementById('card');
+    // Income Chart
+    var ctxIncome = document.getElementById('income');
 
-  var cardIndex =  {{ lstLabelsCard|tojson }};
-  var cardValue =  {{ lstValueCard|tojson }};
+    var incomeIndex =  {{ lstLabelsIncome|tojson }};
+    var incomeValue =  {{ lstValueIncome|tojson }};
 
-  var cardIndex = JSON.parse(cardIndex)
-  var cardValue = JSON.parse(cardValue)
+    var incomeIndex = JSON.parse(incomeIndex)
+    var incomeValue = JSON.parse(incomeValue)
 
 
-  var dataCard = {
-    labels: cardIndex,
-    datasets: [
-      {
-        label: '%',
-        data: cardValue,
-        backgroundColor : colorPalette[2]
-      },
-    ],
-  };
-  var chartCard = new Chart(ctxCard, {
-    type: 'bar',
-    data: dataCard,
-    options : {
-      legend: {
-         display: false
-      }
-  }
-  });
+    var dataIncome = {
+      labels: incomeIndex,
+      datasets: [
+        {
+          label: '%',
+          data: incomeValue,
+          backgroundColor : colorPalette[3]
+
+    }]}
+
+    var chartIncome = new Chart(ctxIncome, {
+      type: 'bar',
+      data: dataIncome,
+      options : {
+        legend: {
+           display: false
+        }
+    }
+    });
+
+
+    // Card Chart
+    var ctxCard = document.getElementById('card');
+
+    var cardIndex =  {{ lstLabelsCard|tojson }};
+    var cardValue =  {{ lstValueCard|tojson }};
+
+    var cardIndex = JSON.parse(cardIndex)
+    var cardValue = JSON.parse(cardValue)
+
+
+    var dataCard = {
+      labels: cardIndex,
+      datasets: [
+        {
+          label: '%',
+          data: cardValue,
+          backgroundColor : colorPalette[2]
+        },
+      ],
+    };
+    var chartCard = new Chart(ctxCard, {
+      type: 'bar',
+      data: dataCard,
+      options : {
+        legend: {
+           display: false
+        }
+    }
+    });
 </script>
 {% endblock %}

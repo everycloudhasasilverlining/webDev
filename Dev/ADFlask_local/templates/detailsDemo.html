@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block breadcrumb %}
+{% extends 'base.html' %} {% from 'macros.html' import detailsMacro1 %}{% block
+breadcrumb %}
 <!-- Breadcrumb -->
 <div class="container-fluid px-0">
   <ol class="breadcrumb d-flex align-items-center p-0">
@@ -19,16 +20,44 @@
   <p class="mb-0">Credit Card Churn Analysis</p>
   <h4 class="font-weight-bold">Segment Detail (Group {{ seg+1}} )</h4>
 </header>
-<!-- <div class="container pb-2" style="border-bottom: 1px solid #bfbfbf">
-  <div
-    class="row mt-5 d-flex justify-content-start"
-    style="text-decoration: none"
-  >
-    <a href="#" class="navItem mr-4 ml-2 text-success">Demo</a>
-    <a href="#" class="navItem text-success">Usage</a>
-  </div>
-</div> -->
-<div class="container mt-5 d-flex justify-content-between">
+
+<!-- Navbar -->
+<div class="container p-0 mb-0">
+  <nav class="navbar navbar-expand-md ml-0 p-0 mt-5">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a
+            class="nav-link text-secondary"
+            href="{{ url_for('views.pageDetailsDemo', seg=seg+1) }}"
+            >Demo</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-secondary"
+            href="{{ url_for('views.pageDetailsUsage', seg=seg+1) }}"
+            >Usage</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<!-- Content Cards -->
+<div class="container mt-1 d-flex justify-content-between">
   <div class="row">
     <div class="col" style="min-width: 300px">
       <div class="cardHeader h6">Gender</div>
@@ -87,20 +116,6 @@
   </div>
 </div>
 
-<script>
-  /*
-  var navItems = document.querySelectorAll('.navItem');
-  console.log(navItems);
-  navItems.forEach(function (item) {
-    item.addEventListener('mouseover', function () {
-      item.style.borderBottom = '2px solid #D9B5A0';
-    });
-    item.removeEventListener('mouseout', function () {
-      item.style.borderBottom = none;
-    });
-  });
-  */
-</script>
 <script>
   var colorPalette = ['#30618C',
     '#9CC1D9',

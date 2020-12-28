@@ -1,0 +1,344 @@
+{% extends 'base.html' %} {% from 'macros.html' import detailsMacro1 %}{% block
+breadcrumb %}
+<!-- Breadcrumb -->
+<div class="container-fluid px-0">
+  <ol class="breadcrumb d-flex align-items-center p-0">
+    <li class="breadcrumb-item ml-5">
+      <a href="#">Lists</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="{{ url_for('views.pageMain') }}">CreditCardChurn</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="{{ url_for('views.pageSegment') }}">Audience Breakdown</a>
+    </li>
+    <li class="breadcrumb-item">Segment Detail</li>
+  </ol>
+</div>
+{% endblock %} {% block body %}
+<header class="container">
+  <p class="mb-0">Credit Card Churn Analysis</p>
+  <h4 class="font-weight-bold">Segment Detail (Group {{ seg+1 }} )</h4>
+</header>
+
+<!-- Navbar -->
+<div class="container p-0 mb-0">
+  <nav class="navbar navbar-expand-md ml-0 p-0 mt-5">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a
+            class="nav-link text-secondary"
+            href="{{ url_for('views.pageDetailsDemo',seg=seg+1) }}"
+            >Demo</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-secondary"
+            href="{{ url_for('views.pageDetailsUsage',seg=seg+1) }}"
+            >Usage</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<!-- Content Cards -->
+<div class="container mt-1 d-flex justify-content-between">
+  <div class="row">
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6">Card Limit</div>
+      <p class="text-secondasry">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas
+        id="detailCardLimit"
+        class="mb-3"
+        width="100"
+        height="100"
+      ></canvas>
+    </div>
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6">Total Transaction Amt</div>
+      <p class="text-secondary">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas
+        id="detailTotalTransAmt"
+        class="mb-3"
+        width="100"
+        height="100"
+      ></canvas>
+    </div>
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6">Utilization Ratio</div>
+      <p class="text-secondary">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas
+        id="detailUtilRatio"
+        class="mb-3"
+        width="100"
+        height="100"
+      ></canvas>
+    </div>
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6"># of transactions</div>
+      <p class="text-secondary">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas
+        id="detailNoOfTrans"
+        class="mb-3"
+        width="100"
+        height="100"
+      ></canvas>
+    </div>
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6">Inactive Months</div>
+      <p class="text-secondary">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas
+        id="detailInactiveMonths"
+        class="mb-3"
+        width="100"
+        height="100"
+      ></canvas>
+    </div>
+    <div class="col" style="min-width: 300px">
+      <div class="cardHeader h6"># of contacts</div>
+      <p class="text-secondary">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium id
+        excepturi repellendus est sunt, modi impedit neque distinctio qui
+        officiis.
+      </p>
+      <canvas
+        id="detailContactCnt"
+        class="mb-3"
+        width="100"
+        height="100"
+      ></canvas>
+    </div>
+  </div>
+</div>
+
+<script>
+  var colorPalette = ['#30618C',
+    '#9CC1D9',
+    '#4B8CA6',
+    '#D9AE5F',
+    '#8C5E35',
+    '#BF4953',
+    '#730217',
+    '#D9CCC7',
+    '#D93A2B',
+    '#D98282'
+    ]
+
+  // Gender
+  var ctxCardLimit = document.getElementById('detailCardLimit');
+
+  var lstCardLimit =  {{ lstCardLimit|tojson }};
+  var lstCardLimit = JSON.parse(lstCardLimit);
+  console.log(lstCardLimit)
+
+
+  var dataCardLimit = {
+    labels: lstCardLimit[0],
+    datasets: [
+      {
+        label: 'Group',
+        data: lstCardLimit[2],
+        backgroundColor: colorPalette[5],
+      },
+      {
+        label: 'All',
+        data: lstCardLimit[1],
+        backgroundColor: colorPalette[1],
+
+      },
+    ],
+  };
+
+  var chartCardLimit = new Chart(ctxCardLimit, {
+    type: 'bar',
+    data: dataCardLimit,
+  });
+
+
+    // Total_Trans_Amt
+    var ctxTotalTransAmt = document.getElementById('detailTotalTransAmt');
+
+    var lstTotalTransAmt =  {{ lstTotalTransAmt|tojson }};
+    var lstTotalTransAmt = JSON.parse(lstTotalTransAmt);
+    console.log(lstTotalTransAmt)
+
+
+    var dataTotalTransAmt = {
+      labels: lstTotalTransAmt[0],
+      datasets: [
+        {
+          label: 'Group',
+          data: lstTotalTransAmt[2],
+          backgroundColor: colorPalette[5],
+        },
+        {
+          label: 'All',
+          data: lstTotalTransAmt[1],
+          backgroundColor: colorPalette[1],
+
+        },
+      ],
+    };
+
+    var chartTotalTransAmt = new Chart(ctxTotalTransAmt, {
+      type: 'bar',
+      data: dataTotalTransAmt,
+    });
+
+
+    // Util Ration
+    var ctxUtilRatio = document.getElementById('detailUtilRatio');
+
+    var lstUtilRatio =  {{ lstUtilRatio|tojson }};
+    var lstUtilRatio = JSON.parse(lstUtilRatio);
+    console.log(lstUtilRatio)
+
+
+    var dataUtilRatio = {
+      labels: lstUtilRatio[0],
+      datasets: [
+        {
+          label: 'Group',
+          data: lstUtilRatio[2],
+          backgroundColor: colorPalette[5],
+        },
+        {
+          label: 'All',
+          data: lstUtilRatio[1],
+          backgroundColor: colorPalette[1],
+
+        },
+      ],
+    };
+
+    var chartUtilRatio = new Chart(ctxUtilRatio, {
+      type: 'bar',
+      data: dataUtilRatio,
+    });
+
+    // # of transactions
+    var ctxNoOfTrans = document.getElementById('detailNoOfTrans');
+
+    var lstNoOfTrans =  {{ lstNoOfTrans|tojson }};
+    var lstNoOfTrans = JSON.parse(lstNoOfTrans);
+    console.log(lstNoOfTrans)
+
+
+    var dataNoOfTrans = {
+      labels: lstNoOfTrans[0],
+      datasets: [
+        {
+          label: 'Group',
+          data: lstNoOfTrans[2],
+          backgroundColor: colorPalette[5],
+        },
+        {
+          label: 'All',
+          data: lstNoOfTrans[1],
+          backgroundColor: colorPalette[1],
+
+        },
+      ],
+    };
+
+    var chartNoOfTrans = new Chart(ctxNoOfTrans, {
+      type: 'bar',
+      data: dataNoOfTrans,
+    });
+
+    // # of inactive months
+    var ctxInactiveMonths = document.getElementById('detailInactiveMonths');
+
+    var lstInactiveMonths =  {{ lstInactiveMonths|tojson }};
+    var lstInactiveMonths = JSON.parse(lstInactiveMonths);
+    console.log(lstInactiveMonths)
+
+
+    var dataInactiveMonths = {
+      labels: lstInactiveMonths[0],
+      datasets: [
+        {
+          label: 'Group',
+          data: lstInactiveMonths[2],
+          backgroundColor: colorPalette[5],
+        },
+        {
+          label: 'All',
+          data: lstInactiveMonths[1],
+          backgroundColor: colorPalette[1],
+
+        },
+      ],
+    };
+
+    var chartInactiveMonths = new Chart(ctxInactiveMonths, {
+      type: 'bar',
+      data: dataInactiveMonths,
+    });
+
+    // # of inactive months
+    var ctxContactCnt = document.getElementById('detailContactCnt');
+
+    var lstContactCnt =  {{ lstContactCnt|tojson }};
+    var lstContactCnt = JSON.parse(lstContactCnt);
+    console.log(lstContactCnt)
+
+
+    var dataContactCnt = {
+      labels: lstContactCnt[0],
+      datasets: [
+        {
+          label: 'Group',
+          data: lstContactCnt[2],
+          backgroundColor: colorPalette[5],
+        },
+        {
+          label: 'All',
+          data: lstContactCnt[1],
+          backgroundColor: colorPalette[1],
+
+        },
+      ],
+    };
+
+    var chartContactCnt = new Chart(ctxContactCnt, {
+      type: 'bar',
+      data: dataContactCnt,
+    });
+</script>
+{% endblock %}
